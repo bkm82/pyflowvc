@@ -41,12 +41,6 @@ def test_write_faces(mock_file, mock_mesh):
         call("4\n"),
     ]
     mock_file().write.assert_has_calls(expected_calls)
-    # mock_file().write.assert_any_call("0\n")
-    # mock_file().write.assert_any_call("1\n")
-    # mock_file().write.assert_any_call("2\n")
-    # mock_file().write.assert_any_call("2\n")
-    # mock_file().write.assert_any_call("3\n")
-    # mock_file().write.assert_any_call("4\n")
 
 
 if __name__ == "__main__":
