@@ -55,7 +55,8 @@ def main():
     - --velocity: File to write velocity data (default: velocity.txt).
 
     Example usage:
-    python extract_mesh_data.py input_file.vtu --coordinates custom_coords.txt --faces custom_faces.txt --velocity custom_velocity.txt
+    python extract_mesh_data.py input_file.vtu --coordinates custom_coords.txt \
+        --faces custom_faces.txt --velocity custom_velocity.txt
 
     If no custom output files are provided, the default files:
     coordinates.txt, faces.txt, and velocity.txt are used.
@@ -63,7 +64,7 @@ def main():
     """
 
     parser = argparse.ArgumentParser(
-        description="Extract mesh data from a .vtu file and write to separate files."
+        description=("Extract mesh data from a .vtu file and write to separate files.")
     )
     parser.add_argument("input_file", help="The input .vtu file to read.")
     parser.add_argument(
