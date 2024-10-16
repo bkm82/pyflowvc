@@ -20,10 +20,10 @@ def write_faces(mesh, filename):
     with open(filename, "w") as file:
         # Access the faces (cells) that are triangular
         for cell_block in mesh.cells:
-            if cell_block.type == "triangle":  # Or use your specific cell type
-                for face in cell_block.data:  # `data` contains the vertex indices
+            if cell_block.type == "triangle":
+                for face in cell_block.data:
                     for vertex in face:
-                        file.write(f"{vertex}\n")  # Write each vertex on a new line
+                        file.write(f"{vertex}\n")
 
 
 def main():
