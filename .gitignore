@@ -218,3 +218,4 @@ flycheck_*.el
 _minted*
 
 ltximg/
+logs/
