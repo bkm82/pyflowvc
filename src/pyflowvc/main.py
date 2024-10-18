@@ -1,7 +1,7 @@
 import json
 import logging.config
 import logging.handlers
-from jsonlogger import settup_logging
+from .jsonlogger import settup_logging
 
 logger = logging.getLogger("pyflowVC")
 
