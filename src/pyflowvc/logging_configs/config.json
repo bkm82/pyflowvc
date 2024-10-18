@@ -8,7 +8,20 @@
 	"detailed":{
 	    "format": "[%(levelname)s|%(module)s|L%(lineno)d] %(asctime)s: %(message)s",
 	    "datefmt": "%Y-%m-%dT%H:%M:%S%z"
-	}
+	},
+	"json": {
+	    "()": "jsonlogger.pyflowVCJSONFormatter",
+	    "fmt_keys": {
+		"level": "levelname",
+		"message": "message",
+		"timestamp": "timestamp",
+		"logger": "name",
+		"module": "module",
+		"function": "funcName",
+		"line": "lineno",
+		"thread_name": "threadName"
+	    }
+    }
     },
     "handlers":{
 	"stderr":{
@@ -24,6 +37,14 @@
 	    "filename" : "logs/pyflowVC.log",
 	    "maxBytes": 1000000,
 	    "backupCount": 3
+	},
+	"jsonfile":{
+	    "class": "logging.handlers.RotatingFileHandler",
+	    "level": "DEBUG",
+	    "formatter": "json",
+	    "filename" : "logs/pyflowVC.log.jsonl",
+	    "maxBytes": 1000000,
+	    "backupCount": 3
 	}
     },
     "loggers":{
@@ -31,7 +52,8 @@
 	    "level": "DEBUG",
 	    "handlers":[
 		"stderr",
-		"file"
+		"file",
+		"jsonfile"
 	    ]
 	}
     }

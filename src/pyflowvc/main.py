@@ -1,16 +1,9 @@
 import json
 import logging.config
 import logging.handlers
-import pathlib
+from jsonlogger import settup_logging
 
 logger = logging.getLogger("pyflowVC")
-
-
-def settup_logging():
-    config_file = pathlib.Path("logging_configs/config.json")
-    with open(config_file) as f_in:
-        config = json.load(f_in)
-    logging.config.dictConfig(config)
 
 
 def bray_add(a, b):
