@@ -1,4 +1,3 @@
-import json
 import logging.config
 import logging.handlers
 from .jsonlogger import settup_logging
