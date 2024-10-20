@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import mock_open, patch, call
 import meshio
-from pyflowvc.main import write_coordinates, write_faces
+from pyflowvc.main import write_coordinates, write_faces, write_velocity
 
 
 @pytest.fixture
@@ -41,6 +41,17 @@ def test_write_faces(mock_file, mock_mesh):
         call("4\n"),
     ]
     mock_file().write.assert_has_calls(expected_calls)
+
+
+@patch("builtins.open", new_callable=mock_open)
+def test_write_velocity(mock_file, mock_mesh):
+    """Test writing velocity data to file."""
+    # Call the function with the mock mesh
+    write_velocity(mock_mesh, "velocity.txt")
+
+    # Assert the file was written correctly
+    mock_file().write.assert_any_call("1.0\n2.0\n3.0\n")
+    mock_file().write.assert_any_call("4.0\n5.0\n6.0\n")
 
 
 if __name__ == "__main__":
