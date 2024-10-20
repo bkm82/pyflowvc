@@ -13,6 +13,11 @@ def bray_add_two(a):
     return a + 2
 
 
+def write_coordinates(mesh, coord_file):
+    """Write cordinates (x, y, z) to the specified file"""
+    pass
+
+
 def main():
     settup_logging()
 
