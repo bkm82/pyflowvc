@@ -1,13 +1,7 @@
 import pytest
 from unittest.mock import mock_open, patch
 import meshio
-from pyflowvc.main import bray_add, write_coordinates
-
-
-def test_bray_add():
-    expected = 8
-    actual = bray_add(3, 5)
-    assert expected == actual
+from pyflowvc.main import write_coordinates
 
 
 @pytest.fixture

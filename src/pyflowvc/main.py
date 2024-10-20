@@ -5,14 +5,6 @@ from .jsonlogger import settup_logging
 logger = logging.getLogger("pyflowVC")
 
 
-def bray_add(a, b):
-    return a + b
-
-
-def bray_add_two(a):
-    return a + 2
-
-
 def write_coordinates(mesh, coord_file):
     """Write coordinates (x, y, z) to the specified file."""
     with open(coord_file, "w") as f:
