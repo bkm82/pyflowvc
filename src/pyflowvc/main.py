@@ -1,6 +1,8 @@
 import logging.config
 import logging.handlers
 from .jsonlogger import settup_logging
+import argparse
+import meshio
 
 logger = logging.getLogger("pyflowVC")
 
@@ -37,8 +39,52 @@ def write_velocity(mesh, velocity_file):
 
 
 def main():
-    settup_logging()
+    """
+    Main function to extract mesh data (coordinates, faces, and velocity)
+    from a .vtu file and write them to separate files.
+
+    This function can be run from the command line with the following options:
+
+    - The input .vtu file is mandatory.
+    - Optionally, the output files for coordinates, faces, and velocity can be
+      specified. If not provided, default file names will be used.
+
+    Command-line arguments:
+    - --coordinates: File to write coordinates data (default: coordinates.txt).
+    - --faces: File to write faces data (default: faces.txt).
+    - --velocity: File to write velocity data (default: velocity.txt).
+
+    Example usage:
+    python extract_mesh_data.py input_file.vtu --coordinates custom_coords.txt --faces custom_faces.txt --velocity custom_velocity.txt
+
+    If no custom output files are provided, the default files:
+    coordinates.txt, faces.txt, and velocity.txt are used.
+
+    """
+
+    parser = argparse.ArgumentParser(
+        description="Extract mesh data from a .vtu file and write to separate files."
+    )
+    parser.add_argument("input_file", help="The input .vtu file to read.")
+    parser.add_argument(
+        "--coordinates", default="coordinates.txt", help="Output file for coordinates."
+    )
+    parser.add_argument("--faces", default="faces.txt", help="Output file for faces.")
+    parser.add_argument(
+        "--velocity", default="velocity.txt", help="Output file for velocity."
+    )
+
+    args = parser.parse_args()
+
+    # Read the mesh data from the input .vtu file
+    mesh = meshio.read(args.input_file)
+
+    # Write coordinates, faces, and velocity to their respective files
+    write_coordinates(mesh, args.coordinates)
+    write_faces(mesh, args.faces)
+    write_velocity(mesh, args.velocity)
 
 
 if __name__ == "__main__":
+    settup_logging()
     main()
